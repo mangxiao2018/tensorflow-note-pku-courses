@@ -59,11 +59,9 @@ for epoch in range(epoch):
         with tf.GradientTape() as tape:
             # 矩阵计算: y = x * w + b
             y = tf.matmul(feature_train, w1) + b1
-            #print(y)
             y = tf.nn.softmax(y)
-            #print(y)
             y_ = tf.one_hot(label_train, depth=3)
-            #print(y_)
+            # loss = (y_ - y)^2 / n 因为没有设置axis维度，所以求所有值的均值，输出为一个标量值
             loss = tf.reduce_mean(tf.square(y_ - y))
             print("loss:{}".format(loss))
             loss_all += loss.numpy()
