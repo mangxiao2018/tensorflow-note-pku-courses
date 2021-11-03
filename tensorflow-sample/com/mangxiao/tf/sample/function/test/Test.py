@@ -1,1 +1,1 @@
-print("xxxx")
+import this
